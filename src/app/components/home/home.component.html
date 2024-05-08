@@ -1,0 +1,25 @@
+<h1>{{ time }}</h1>
+
+<button class="btn btn-primary" (click)="refreshData()">
+  Refresh Comments
+</button>
+
+<ul>
+  @defer { @if(!this.listComent.length) {
+  <span>Tidak ada komentar</span>
+  } @else { @for (coment of this.listComent; track $index) {
+  <li>{{ $index + 1 }}. {{ coment.name }}</li>
+  } } } @loading(minimum 2s) {
+  <p>Loading...</p>
+  }
+</ul>
+
+<nav>
+  <ul>
+    <li><a routerLink="/home/123/about">about</a></li>
+    <li><a routerLink="/home/123/contact">contact</a></li>
+    <li><a routerLink="/home/123/signal">signal</a></li>
+    <li><a routerLink="../../user">user</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

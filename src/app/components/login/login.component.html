@@ -1,0 +1,32 @@
+<br />
+<h2>Login Page</h2>
+<br />
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div>
+    <label for="email">Email</label> <br />
+    <input
+      type="email"
+      id="email"
+      placeholder="Your Email"
+      formControlName="email"
+    />
+  </div>
+  <br />
+  <div>
+    <label for="password">Password</label> <br />
+    <input
+      type="password"
+      id="password"
+      placeholder="Your Password"
+      formControlName="password"
+    />
+  </div>
+  <br />
+  <div>
+    <button [disabled]="!loginForm.valid">Login</button>
+  </div>
+</form>
+
+<br />
+<p>Your Email: {{ loginForm.value.email }}</p>
+<p>Your Password: {{ loginForm.value.password }}</p>

@@ -1,0 +1,67 @@
+<button type="button" mat-button (click)="drawer.toggle()">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
+    <p
+      (mouseenter)="this.changeTitle()"
+      (mouseleave)="this.changeTitle()"
+      class="text-center"
+    >
+      Anu App
+    </p>
+    <mat-list *ngFor="let menu of menus" role="list">
+      <mat-list-item role="listitem">
+        <button
+          color="accent"
+          class="w-100"
+          mat-raised-button
+          (click)="this.changePage(menu.name)"
+          disabled="{{ menu.name === 'Dashboard' ? 'true' : 'false' }}"
+        >
+          <mat-icon>{{ menu.icon }}</mat-icon> {{ menu.name }}
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+
+  <div class="p-4">
+    <div [ngSwitch]="this.currentPage">
+      <div *ngSwitchCase="'Home'">
+        <h2
+          [style]="currentStyles"
+          [ngClass]="this.titleChange ? 'title-change' : 'title'"
+        >
+          Home Page
+        </h2>
+        <h5 [appHighlight]="this.color">Welcome to the party</h5>
+        <div [ngStyle]="currentStyles">
+          This div is initially italic, normal weight, and extra large (24px).
+        </div>
+        <p ngNonBindable>This should not evaluate: {{ 1 + 1 }}</p>
+      </div>
+      <div *ngSwitchCase="'User'">
+        <h2>User Page</h2>
+
+        <div [ngClass]="currentClasses">
+          <p>Teletubies</p>
+        </div>
+
+        <mat-radio-group
+          aria-label="Select an option"
+          [(ngModel)]="this.radioValue"
+          (change)="onRadioChange($event)"
+        >
+          <mat-radio-button value="tingkiwingky">Tingkiwingky</mat-radio-button>
+          <mat-radio-button value="dipsy">Dipsy</mat-radio-button>
+          <mat-radio-button value="lala">Lala</mat-radio-button>
+        </mat-radio-group>
+
+        <p>{{ this.radioValue }}</p>
+      </div>
+      <div *ngSwitchCase="'Login'">
+        <h2>Login Page</h2>
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>

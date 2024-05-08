@@ -1,0 +1,66 @@
+.example-container {
+  width: 500px;
+  height: 300px;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.title {
+  color: lightskyblue;
+}
+
+.title-change {
+  color: salmon;
+}
+
+.color-yellow {
+  color: yellow;
+}
+
+.color-green {
+  color: green;
+}
+
+.color-purple {
+  color: purple;
+}
+
+.shape-1 {
+  border: 2px solid yellow;
+  height: auto;
+  width: auto;
+  text-align: center;
+  border-radius: 20px 0 20px 0;
+  -webkit-border-radius: 20px 0 20px 0;
+  -moz-border-radius: 20px 0 20px 0;
+  -ms-border-radius: 20px 0 20px 0;
+  -o-border-radius: 20px 0 20px 0;
+}
+
+.shape-2 {
+  border: 2px solid green;
+  height: auto;
+  width: auto;
+  text-align: center;
+  border-radius: 20px 0 20px 0;
+  -webkit-border-radius: 0 20px 20px 0;
+  -moz-border-radius: 20px 0 20px 0;
+  -ms-border-radius: 20px 0 20px 0;
+  -o-border-radius: 20px 0 20px 0;
+}
+
+.shape-3 {
+  text-align: center;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid purple;
+}

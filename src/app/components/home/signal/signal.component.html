@@ -1,0 +1,76 @@
+<h3>Kopi Malabar</h3>
+
+<div class="d-flex flex-column gap-3">
+  <div>
+    <label>List kopi</label>
+    <ol class="list-group list-group-numbered shadow">
+      @for (coffee of this.coffees; track $index) {
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{ coffee.name }}</div>
+          $ {{ coffee.price }}
+        </div>
+        <div class="d-flex flex-column gap-2">
+          <div class="badge text-bg-primary rounded-pill w-fit">
+            Stock: {{ coffee.stock }}
+          </div>
+          <button
+            (click)="addToListCoffeeSelected(coffee)"
+            class="btn btn-warning btn-sm fw-bold"
+            [disabled]="coffee.stock === 0"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+            Add To Cart
+          </button>
+        </div>
+      </li>
+      }
+    </ol>
+  </div>
+
+  <div>
+    <label>List Cart kopi</label>
+    <ol class="list-group list-group-numbered shadow">
+      @for (coffee of this.listCoffeeSelected(); track $index) {
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div
+          class="ms-2 me-auto d-flex flex-column justify-content-center align-items-center gap-2"
+        >
+          <div class="fw-bold">{{ coffee.name }}</div>
+          <div class="d-flex gap-1">
+            <button
+              (click)="removeQtyAtCart(coffee)"
+              class="btn btn-danger fw-bold"
+              [disabled]="coffee.quantity === 0"
+            >
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <button
+              (click)="addQtyAtCart(coffee)"
+              class="btn btn-success fw-bold"
+              [disabled]="coffee.quantity === coffee.stock + 1"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex flex-column gap-2">
+          <div class="badge text-bg-primary rounded-pill w-fit">
+            qty: {{ coffee.quantity }}
+          </div>
+          <h2>${{ coffee.price }}</h2>
+        </div>
+      </li>
+      }
+    </ol>
+  </div>
+
+  <div>
+    <p>Total Price: $ {{ this.totalPrice() }}</p>
+    <button class="btn btn-primary" (click)="buy()">Buy</button>
+  </div>
+</div>

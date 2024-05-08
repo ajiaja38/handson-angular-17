@@ -1,0 +1,53 @@
+<h1>User Page</h1>
+@if (isLogin && this.role === 'employee') {
+<p>Selamat Anda Berhasil Masuk sebagai karyawan</p>
+<img [src]="fotoRakyat" alt="Photo Rakyat" />
+} @else if (isLogin && this.role === 'boss') {
+<p>The username is {{ this.occupation }}</p>
+<p>Selamat datang boss, berikut circle anda</p>
+<button (click)="sendNotify()" style="cursor: pointer">Send Notify</button>
+<ul *ngIf="this.complete">
+  @for (boss of bosses; track $index) {
+  <img
+    class="image-boss"
+    [ngSrc]="boss.foto"
+    [alt]="boss.name"
+    [width]="boss.imageSize"
+    [height]="boss.imageSize"
+  />
+  <li>
+    {{ boss.name }} duit:<b>{{
+      boss.wealth | currency : "Rp." : "symbol" : "1.0-0"
+    }}</b>
+  </li>
+  }
+</ul>
+<p>Error Stream: {{ error }}</p>
+<ul>
+  <li>
+    Static Image:
+    <img
+      ngSrc="/assets/deep.jpg"
+      alt="Angular logo"
+      width="200"
+      height="150"
+      style="object-fit: cover"
+    />
+  </li>
+  <li>
+    Dynamic Image:
+    <img
+      [ngSrc]="logoUrl"
+      alt="logoAlt"
+      width="200"
+      height="150"
+      style="object-fit: cover"
+    />
+  </li>
+</ul>
+<p>Apakah duit diatas halal?</p>
+<button [disabled]="buttonDisabled" (click)="onClickYes()">Yes</button>
+<button (click)="onClickNo()">No</button>
+} @else {
+<p>Maaf Kamu Belum Login!</p>
+}
